@@ -3,6 +3,8 @@
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
+#define QWER 2 // QWERTY
+#define STEN 3 // STENO
 
 enum custom_keycodes {
 #ifdef ORYX_CONFIGURATOR
@@ -38,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox(
   // left hand
-  KC_EQL,          KC_1,        KC_2,          KC_3,         KC_4,    KC_5,    KC_LEFT,
+  KC_EQL,          KC_1,        KC_2,          KC_3,         KC_4,    KC_5,    TG(QWER),
   KC_TAB,          KC_QUOT,     KC_COMM,       KC_DOT,       KC_P,    KC_Y,    OSL(SYMB),
   KC_ESC,          KC_A,        KC_O,          KC_E,         KC_U,    KC_I,
   KC_LSFT,         KC_SCLN,     KC_Q,          KC_J,         KC_K,    KC_X,    ALL_T(KC_NO),
@@ -47,13 +49,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                 KC_HOME,
                                                          KC_BSPC, OSM(MOD_LSFT), KC_DEL,
   // right hand
-  KC_RGHT,      KC_6,    KC_7,    KC_8,    KC_9,      KC_0,           KC_NO,
-  OSL(SYMB),    KC_F,    KC_G,    KC_C,    KC_R,      KC_L,           KC_BSLS,
+  TG(STEN),      KC_6,    KC_7,    KC_8,    KC_9,      KC_0,           KC_NO,
+  OSL(SYMB),    KC_F,    KC_G,    KC_C,    KC_R,      KC_L,           KC_SLSH,
                 KC_D,    KC_H,    KC_T,    KC_N,      KC_S,           KC_MINUS,
   MEH_T(KC_NO), KC_B,    KC_M,    KC_W,    KC_V,      KC_Z,           KC_RSFT,
                 KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC,   KC_RCTRL,
-  KC_LALT, CTL_T(KC_ESC),
-  KC_PGUP,
+  KC_LEFT, KC_RIGHT,
+  KC_UP,
   KC_DOWN, KC_ENT, KC_SPC
 ),
 /* Keymap 1: Symbol Layer
@@ -96,6 +98,46 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   RGB_TOG, RGB_SLD,
   KC_TRNS,
   KC_TRNS, RGB_HUD, RGB_HUI
+),
+[QWER] = LAYOUT_ergodox(
+  // left hand
+  VRSN,    KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
+  KC_TRNS, KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      KC_TRNS,
+  KC_TRNS, KC_A,      KC_S,      KC_D,      KC_F,      KC_G,
+  KC_TRNS, KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      KC_TRNS,
+  EPRM,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                                         KC_TRNS, KC_TRNS,
+                                                                  KC_TRNS,
+                                                KC_TRNS, KC_TRNS, KC_TRNS,
+  // right hand
+  KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,
+  KC_TRNS, KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,     KC_TRNS,
+           KC_H,      KC_J,      KC_K,      KC_L,      KC_SCLN,  KC_TRNS,
+  KC_TRNS, KC_N,      KC_M,      KC_COMMA,  KC_DOT,    KC_BSLS,  KC_TRNS,
+                      KC_TRNS,   KC_DOT,    KC_0,      KC_EQL,   KC_TRNS,
+  KC_TRNS, KC_TRNS,
+  KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS
+),
+[STEN] = LAYOUT_ergodox(
+  // left hand
+  VRSN,    KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
+  KC_TRNS, KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      KC_TRNS,
+  KC_TRNS, KC_A,      KC_S,      KC_D,      KC_F,      KC_G,
+  KC_TRNS, KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      KC_TRNS,
+  EPRM,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                                         KC_TRNS, KC_TRNS,
+                                                                  KC_TRNS,
+                                                KC_C, KC_V, KC_TRNS,
+  // right hand
+  KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_BSPC,
+  KC_TRNS, KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,     KC_LBRC,
+           KC_H,      KC_J,      KC_K,      KC_L,      KC_SCLN,  KC_QUOT,
+  KC_TRNS, KC_N,      KC_M,      KC_COMMA,  KC_DOT,    KC_BSLS,  KC_TRNS,
+                      KC_TRNS,   KC_DOT,    KC_0,      KC_EQL,   KC_TRNS,
+  KC_TRNS, KC_TRNS,
+  KC_TRNS,
+  KC_TRNS, KC_N, KC_M
 ),
 };
 
