@@ -45,15 +45,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_ESC,          KC_A,        KC_O,          KC_E,         KC_U,    KC_I,
   KC_LSFT,         KC_SCLN,     KC_Q,          KC_J,         KC_K,    KC_X,    ALL_T(KC_NO),
   KC_LCTL,         KC_NO,       KC_NO,         ALT_T(KC_NO), KC_LWIN,
-                                                                 ALT_T(KC_APP), KC_LGUI,
+                                                                       C(KC_C), C(KC_V),
                                                                                 KC_HOME,
                                                          KC_BSPC, OSM(MOD_LSFT), KC_DEL,
   // right hand
-  TG(STEN),      KC_6,    KC_7,    KC_8,    KC_9,      KC_0,           KC_NO,
+  TG(STEN),      KC_6,    KC_7,    KC_8,    KC_9,      KC_0,           KC_EQL,
   OSL(SYMB),    KC_F,    KC_G,    KC_C,    KC_R,      KC_L,           KC_SLSH,
                 KC_D,    KC_H,    KC_T,    KC_N,      KC_S,           KC_MINUS,
   MEH_T(KC_NO), KC_B,    KC_M,    KC_W,    KC_V,      KC_Z,           KC_RSFT,
-                KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC,   KC_RCTRL,
+                C(KC_S),   KC_DOWN, KC_LBRC, LWIN(KC_L),KC_RCTRL,
   KC_LEFT, KC_RIGHT,
   KC_UP,
   KC_DOWN, KC_ENT, KC_SPC
