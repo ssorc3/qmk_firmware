@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "ergodox_ez.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
@@ -13,7 +14,8 @@ enum custom_keycodes {
   EPRM = SAFE_RANGE,
 #endif
   VRSN,
-  RGB_SLD
+  RGB_SLD,
+  TEST_LED
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -49,11 +51,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                 KC_HOME,
                                                          KC_BSPC, OSM(MOD_LSFT), KC_DEL,
   // right hand
-  TG(STEN),      KC_6,    KC_7,    KC_8,    KC_9,      KC_0,           KC_EQL,
+  TG(STEN),     KC_6,    KC_7,    KC_8,    KC_9,      KC_0,           KC_EQL,
   OSL(SYMB),    KC_F,    KC_G,    KC_C,    KC_R,      KC_L,           KC_SLSH,
                 KC_D,    KC_H,    KC_T,    KC_N,      KC_S,           KC_MINUS,
-  MEH_T(KC_NO), KC_B,    KC_M,    KC_W,    KC_V,      KC_Z,           KC_RSFT,
-                C(KC_S),   KC_DOWN, KC_LBRC, LWIN(KC_L),KC_RCTRL,
+  KC_SCLN,      KC_B,    KC_M,    KC_W,    KC_V,      KC_Z,           KC_RSFT,
+                C(KC_S),   KC_DOWN, TEST_LED, LWIN(KC_L),KC_RCTRL,
   KC_LEFT, KC_RIGHT,
   KC_UP,
   KC_DOWN, KC_ENT, KC_SPC
@@ -153,4 +155,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
   }
   return true;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  switch(get_highest_layer(state)) {
+    case BASE:
+      ergodox_led_all_off();
+      break;
+    case SYMB:
+      ergodox_right_led_1_on();
+      break;
+    case QWER:
+      ergodox_right_led_2_on();
+      break;
+    case STEN:
+      ergodox_right_led_3_on();
+      break;
+  }
+  return state;
 }
